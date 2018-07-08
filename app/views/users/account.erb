@@ -1,0 +1,15 @@
+<h2>Welcome, <%= User.find(session[:user_id]).username %></h2>
+<form action="/new" method="get">
+  <input type="submit" name="submit" value="Add New Recipes">
+</form>
+<% @user = User.find(session[:user_id]) %>
+<% @user.recipes.each do |recipe| %>
+<p>Recipe name: <%= recipe.recipe_name %></p>
+<p>Serving size: <%= recipe.serving_size %></p>
+<p>Cook time: <%= recipe.cook_time %></p>
+<p>Ingredients: <%= recipe.ingredients %></p>
+<p>Method: <%= recipe.method %></p>
+<form action="/edit/<%= recipe.id %>" method="get">
+  <input type="submit" name="submit" value="Edit">
+</form>
+<% end %>
