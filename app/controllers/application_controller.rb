@@ -6,11 +6,15 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, "cookbook365_secret"
+    set :session_secret, "cookbook365_secret", "password_security"
   end
 
   get '/' do
-    erb :index
+    if logged_in?
+      redirect "/account/#{session[:user_id]}"
+    else
+      erb :index, :layout => :"layout_index"
+    end
   end
 
  helpers do
