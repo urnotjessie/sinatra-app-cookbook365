@@ -1,15 +1,23 @@
-<h2>Welcome, <%= User.find(session[:user_id]).username %></h2>
+<h2>Welcome, <%= @user.username %></h2>
 <form action="/new" method="get">
   <input type="submit" name="submit" value="Add New Recipes">
 </form>
 <% @user = User.find(session[:user_id]) %>
 <% @user.recipes.each do |recipe| %>
-<p>Recipe name: <%= recipe.recipe_name %></p>
-<p>Serving size: <%= recipe.serving_size %></p>
-<p>Cook time: <%= recipe.cook_time %></p>
-<p>Ingredients: <%= recipe.ingredients %></p>
-<p>Method: <%= recipe.method %></p>
-<form action="/edit/<%= recipe.id %>" method="get">
-  <input type="submit" name="submit" value="Edit">
-</form>
+  <p>Recipe name: <%= recipe.recipe_name %></p>
+  <p>Serving size: <%= recipe.serving_size %></p>
+  <p>Cook time: <%= recipe.cook_time %></p>
+  <p>Ingredients: <%= recipe.ingredients %></p>
+  <p>Method: <%= recipe.method %></p>
+
+  <form action="/edit/<%= recipe.id %>" method="get">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <input type="submit" name="submit" value="Edit">
+  </form>
+
+  <form action="/delete/<%= recipe.id %>" method="post">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <input type="submit" name="submit" value="Delete recipe">
+  </form>
+  
 <% end %>

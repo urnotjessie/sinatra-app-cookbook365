@@ -1,0 +1,15 @@
+<% Recipe.all.each do |recipe| %>
+  <% user = User.find(recipe.user_id) %>
+  <h4>Recipe name: <%= recipe.recipe_name %></h4>
+  <h4>Serving size: <%= recipe.serving_size %></h4>
+  <h4>Cook time: <%= recipe.cook_time %></h4>
+  <h4>User: <%= user.username %></h4>
+
+  <form class="" action="/recipes/<%= recipe.id %>" method="get">
+    <input type="submit" name="submit" value="Show recipe details">
+  </form>
+
+  <form class="" action="/account/<%= user.id %>" method="get">
+    <input type="submit" name="submit" value="Show more recipes by <%= user.username %>">
+  </form>
+<% end %>
