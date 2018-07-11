@@ -1,0 +1,43 @@
+body {
+  background-image: url("/img/background.png");
+}
+
+.container-yield {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+}
+
+html {position: relative;
+      min-height: 100%;
+      }
+body {font-family: 'Arvo', serif;
+      margin-bottom: 70px;
+      }
+header {
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        font-color: #FFFFFF;
+        text-align: center;
+        width: 100%;
+        }
+.navbar {font-size: 1.25em;
+        border: none;
+        background-color: #FFFFFF;
+        width: 100%;
+        }
+.footer {position: absolute;
+        bottom: 0;
+        width: 100%;
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 0.75em;
+        color: #909090;
+        background-color: #000000;
+        text-align: center;
+        padding: 10px 0;
+        height: 70px;
+        }
