@@ -12,38 +12,38 @@
   <body>
 
     <!-- *** Header *** -->
-    <header>
+    <header style="background-color: hsla(52, 3%, 67%, 0.67);">
       <div class="row header">
         <div class="col-sm-12">
-          <h1>Cook with us!</h1>
-          <h2>Share Your Recipes and Get Inspired</h2>
+          <h2>Cook with us!</h2>
+          <h3>Share Your Recipes and Get Inspired</h3>
         </div>
       </div>
     </header>
 
     <!-- *** NAVBAR *** -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: hsla(52, 3%, 67%, 0.67);">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="/account/<%= current_user.id %>">My Account</a>
-          <a class="nav-item nav-link" href="/logout">Log Out</a>
-        </div>
-
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="/recipes">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="/account/<%= current_user.slug %>">My Account</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="/logout">Log Out</a>
+          </li>
+        </ul>
+        <span class="navbar-text text-dark">Welcome <%= current_user.username %></span>
       </div>
     </nav>
 
-
-
-    <div class="container-yield">
+    <div class="container">
+      <br></br>
       <%= yield %>
     </div>
 

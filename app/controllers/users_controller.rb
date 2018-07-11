@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   get '/signup' do
-    erb :"users/signup"
+    erb :"users/signup", :layout => :"layout_index"
   end
 
   post '/signup' do
@@ -25,9 +25,9 @@ class UsersController < ApplicationController
     end
   end
 
-  get '/account/:id' do
+  get '/account/:slug' do
     if current_user && logged_in?
-      @user = User.find(params[:id])
+      @user = User.find_by_slug(params[:slug])
       erb :"users/account"
     else
       redirect '/'

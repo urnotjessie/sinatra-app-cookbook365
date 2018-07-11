@@ -1,5 +1,10 @@
-<p>Recipe name: <%= @recipe.recipe_name %></p>
-<p>Serving size: <%= @recipe.serving_size %></p>
-<p>Cook time: <%= @recipe.cook_time %></p>
-<p>Ingredients: <%= @recipe.ingredients %></p>
-<p>Method: <%= @recipe.method %></p>
+<div class="card text-center bg-light">
+  <div class="card-header">
+    <p>Recipe name: <%= @recipe.recipe_name %></p>
+  </div>
+  <div class="card-body">
+    <p>Serving size: <%= @recipe.serving_size %></p>
+    <p>Cook time: <%= @recipe.cook_time %></p>
+    <p>Ingredients: <%= @recipe.ingredients %></p>
+    <p>Method: <%= @recipe.method %></p>
+  </div>

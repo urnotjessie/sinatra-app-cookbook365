@@ -1,15 +1,15 @@
 <% Recipe.all.each do |recipe| %>
   <% user = User.find(recipe.user_id) %>
-  <h4>Recipe name: <%= recipe.recipe_name %></h4>
-  <h4>Serving size: <%= recipe.serving_size %></h4>
-  <h4>Cook time: <%= recipe.cook_time %></h4>
-  <h4>User: <%= user.username %></h4>
+  <div class="card text-center bg-light">
+    <div class="card-header">
+      <h4>Recipe name: <%= recipe.recipe_name %></h4>
+    </div>
+    <div class="card-body">
+      <h5>Serving size: <%= recipe.serving_size %></h5>
+      <h5>Cook time: <%= recipe.cook_time %></h5>
+      <h5>User: <a class="btn btn-info" href="/account/<%= user.slug %>"><%= user.username %></a></h5>
+      <a class="btn btn-info" href="/recipes/<%= recipe.id %>" role="button">Show recipe details</a>
+    </div>
+  </div>
 
-  <form class="" action="/recipes/<%= recipe.id %>" method="get">
-    <input type="submit" name="submit" value="Show recipe details">
-  </form>
-
-  <form class="" action="/account/<%= user.id %>" method="get">
-    <input type="submit" name="submit" value="Show more recipes by <%= user.username %>">
-  </form>
 <% end %>

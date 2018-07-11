@@ -23,7 +23,7 @@ class RecipesController < ApplicationController
       @user.recipes << @recipe
       @user.save
 
-      redirect "/account/#{@user.id}"
+      redirect "/account/#{@user.slug}"
 
     else
       redirect '/new'
@@ -62,13 +62,13 @@ class RecipesController < ApplicationController
   delete '/delete/:id' do
 
     @recipe = Recipe.find(params[:id])
+    @user = User.find(@recipe.user_id)
+
     @recipe.delete
 
     # flash[:message] = "recipe has been deleted successfully"
 
-    redirect "/account/#{@recipe.user_id}"
+    redirect "/account/#{@user.slug}"
   end
-
-
 
 end
