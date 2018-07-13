@@ -1,10 +1,12 @@
-<div class="card text-center bg-light">
-  <div class="card-header">
-    <p>Recipe name: <%= @recipe.recipe_name %></p>
+<div class="card bg-light">
+  <div class="card-header text-center ">
+    <h4>Recipe name: <%= @recipe.recipe_name %></h4>
   </div>
   <div class="card-body">
-    <p>Serving size: <%= @recipe.serving_size %></p>
-    <p>Cook time: <%= @recipe.cook_time %></p>
-    <p>Ingredients: <%= @recipe.ingredients %></p>
-    <p>Method: <%= @recipe.method %></p>
+    <h5><strong>Serving size:</strong><%= @recipe.serving_size %></h5>
+
+    <h5><strong>Cook time:</strong> <%= @recipe.cook_time %></h5>
+    <p><h5><strong>Ingredients:</strong></h5> <%= @recipe.ingredients %></p>
+    <p><h5><strong>Method:</strong></h5> <%= @recipe.method %></p>
+
   </div>

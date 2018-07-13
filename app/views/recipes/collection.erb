@@ -1,15 +1,18 @@
 <% Recipe.all.each do |recipe| %>
   <% user = User.find(recipe.user_id) %>
-  <div class="card text-center bg-light">
-    <div class="card-header">
-      <h4>Recipe name: <%= recipe.recipe_name %></h4>
+  <div class="card bg-light">
+    <div class="card-header text-center ">
+      <h4><%= recipe.recipe_name %></h4>
     </div>
     <div class="card-body">
-      <h5>Serving size: <%= recipe.serving_size %></h5>
-      <h5>Cook time: <%= recipe.cook_time %></h5>
-      <h5>User: <a class="btn btn-info" href="/account/<%= user.slug %>"><%= user.username %></a></h5>
+      <h5><strong>Serving size:</strong><%= recipe.serving_size %></h5>
+
+      <h5><strong>Cook time:</strong> <%= recipe.cook_time %></h5>
+
+      <h5><strong>Created by:</strong> <a class="btn btn-info" href="/account/<%= user.slug %>"><%= user.username %></a></h5>
       <a class="btn btn-info" href="/recipes/<%= recipe.id %>" role="button">Show recipe details</a>
     </div>
   </div>
+  <br></br>
 
 <% end %>

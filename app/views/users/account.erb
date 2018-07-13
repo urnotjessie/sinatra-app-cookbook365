@@ -1,29 +1,41 @@
 <h2><%= @user.username %>' recipes</h2>
 <br></br>
 
-
-<% @user = User.find(session[:user_id]) %>
-
 <% @user.recipes.each do |recipe| %>
 
-  <div class="card text-center bg-light">
-    <div class="card-header">
-      <h4>Recipe name: <%= recipe.recipe_name %></h4>
+  <div class="card bg-light">
+    <div class="card-header text-center ">
+      <h4><%= recipe.recipe_name %></h4>
     </div>
     <div class="card-body">
-      <h6>Serving size: <%= recipe.serving_size %></p>
-      <h6>Cook time: <%= recipe.cook_time %></p>
-      <p>Ingredients: <%= recipe.ingredients %></p>
-      <p>Method: <%= recipe.method %></p>
+      <h5><strong>Serving size:</strong><%= recipe.serving_size %></h5>
 
-      <a class="btn btn-secondary" href="/edit/<%= recipe.id %>" role="button">Edit</a>
-      <a class="btn btn-secondary" href="/delete/<%= recipe.id %>" role="button">Delete</a>
+      <h5><strong>Cook time:</strong> <%= recipe.cook_time %></h5>
+      <p><h5><strong>Ingredients:</strong></h5> <%= recipe.ingredients %></p>
+      <p><h5><strong>Method:</strong></h5> <%= recipe.method %></p>
+
+      <% if session[:user_id] == @user.id %>
+        <div class="row justify-content-md-center">
+          <div class="col col-lg-2">
+            <form action="/edit/<%= recipe.id %>" method="get">
+              <button type="submit" class="btn btn-secondary btn-sm">Edit</button>
+            </form>
+          </div>
+          <div class="col col-lg-2">
+            <form action="/delete/<%= recipe.id %>" method="post">
+              <input id="hidden" type="hidden" name="_method" value="delete">
+              <button type="submit" class="btn btn-secondary btn-sm">Delete</button>
+            </form>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
-
+  <br></br>
 <% end %>
 <br></br>
-
-<form action="/new" method="get">
-  <input type="submit" name="submit" value="Add New Recipes">
-</form>
+<% if session[:user_id] == @user.id %>
+  <form action="/new" method="get">
+    <button type="submit" class="btn btn-secondary btn-sm">Add New Recipes</button>
+  </form>
+<% end %>

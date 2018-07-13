@@ -49,26 +49,30 @@ class RecipesController < ApplicationController
   patch '/edit/:id' do
     @recipe = Recipe.find(params[:id])
 
-    @recipe.update(
-      recipe_name: params[:recipe_name],
-      serving_size: params[:serving_size],
-      cook_time: params[:cook_time],
-      ingredients: params[:ingredients],
-      method: params[:method] )
+    if current_user.recipes.include?(@recipe)
+      @recipe.update(
+        recipe_name: params[:recipe_name],
+        serving_size: params[:serving_size],
+        cook_time: params[:cook_time],
+        ingredients: params[:ingredients],
+        method: params[:method] )
 
-    redirect "/account/#{@recipe.user_id}"
+      redirect "/account/#{current_user.slug}"
+    else
+      redirect "/recipes/#{@recipe.id}"
+    end
   end
 
   delete '/delete/:id' do
 
     @recipe = Recipe.find(params[:id])
-    @user = User.find(@recipe.user_id)
+    if current_user.recipes.include?(@recipe)
+      @recipe.delete
 
-    @recipe.delete
-
-    # flash[:message] = "recipe has been deleted successfully"
-
-    redirect "/account/#{@user.slug}"
+      redirect "/account/#{current_user.slug}"
+    else
+      redirect "/recipes/#{@recipe.id}"
+    end
   end
 
 end

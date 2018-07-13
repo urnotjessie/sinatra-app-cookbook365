@@ -26,12 +26,8 @@ class UsersController < ApplicationController
   end
 
   get '/account/:slug' do
-    if current_user && logged_in?
-      @user = User.find_by_slug(params[:slug])
-      erb :"users/account"
-    else
-      redirect '/'
-    end
+    @user = User.find_by_slug(params[:slug])
+    erb :"users/account"
   end
 
   get '/logout' do
