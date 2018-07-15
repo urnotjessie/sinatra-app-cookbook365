@@ -7,6 +7,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect '/recipes'
     else
+      flash[:message] = "Wrong email or password!"
       redirect '/'
     end
   end
@@ -16,11 +17,15 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    if !params.values.include? "" && !User.find_by(username: params[:username])
+    if !params.values.include?("") && !User.find_by(email: params[:email])
       @user = User.create(username: params[:username], email: params[:email], password: params[:password])
       session[:user_id] = @user.id
       redirect '/recipes'
-    else
+    elsif User.find_by(email: params[:email])
+      flash[:message] = "User already registed, please log in!"
+      redirect '/'
+    elsif params.values.include?("")
+      flash[:message] = "Please complete the form to signup!"
       redirect '/signup'
     end
   end

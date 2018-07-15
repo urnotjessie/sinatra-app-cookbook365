@@ -1,8 +1,12 @@
-<div class="card bg-light">
+<div class="card bg-light" style="width: 21rem;">
   <div class="card-header text-center">
     <h4>Sign up</h4>
   </div>
   <div class="card-body">
+    <% if flash.include?(:message) %>
+      <p style="color:#f0ad4e;"><%= flash[:message] %> </p>
+    <% end %>
+
     <form action="/signup" method="post">
       <div class="form-group row">
         <label for="username" class="col-sm-4 col-form-label">Username</label>
@@ -24,7 +28,7 @@
       </div>
 
       <button type="submit" class="btn btn-secondary btn-sm btn-block">Sign Up</button>
-      
+
     </form>
   </div>
 </div>

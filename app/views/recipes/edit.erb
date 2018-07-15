@@ -3,6 +3,10 @@
     <h4>Edit recipe</h4>
   </div>
   <div class="card-body">
+    <% if flash.include?(:message) %>
+      <p style="color:#f0ad4e;"><%= flash[:message] %> </p>
+    <% end %>
+    
     <form action="/edit/<%= @recipe.id %>" method="post">
 
       <input id="hidden" type="hidden" name="_method" value="patch">

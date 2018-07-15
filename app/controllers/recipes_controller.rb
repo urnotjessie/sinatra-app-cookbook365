@@ -26,6 +26,7 @@ class RecipesController < ApplicationController
       redirect "/account/#{@user.slug}"
 
     else
+      flash[:message] = "Please add recipe name!"
       redirect '/new'
     end
 
@@ -49,7 +50,7 @@ class RecipesController < ApplicationController
   patch '/edit/:id' do
     @recipe = Recipe.find(params[:id])
 
-    if current_user.recipes.include?(@recipe)
+    if current_user.recipes.include?(@recipe) && params[:recipe_name] != ""
       @recipe.update(
         recipe_name: params[:recipe_name],
         serving_size: params[:serving_size],
@@ -58,6 +59,11 @@ class RecipesController < ApplicationController
         method: params[:method] )
 
       redirect "/account/#{current_user.slug}"
+
+    elsif params[:recipe_name] == ""
+      flash[:message] = "Please add recipe name!"
+      redirect "/edit/#{@recipe.id}"
+
     else
       redirect "/recipes/#{@recipe.id}"
     end
