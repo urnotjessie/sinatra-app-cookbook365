@@ -17,12 +17,12 @@
       <% if session[:user_id] == @user.id %>
         <div class="row justify-content-md-center">
           <div class="col col-lg-2">
-            <form action="/edit/<%= recipe.id %>" method="get">
+            <form action="/recipes/edit/<%= recipe.id %>" method="get">
               <button type="submit" class="btn btn-secondary btn-sm">Edit</button>
             </form>
           </div>
           <div class="col col-lg-2">
-            <form action="/delete/<%= recipe.id %>" method="post">
+            <form action="/recipes/delete/<%= recipe.id %>" method="post">
               <input id="hidden" type="hidden" name="_method" value="delete">
               <button type="submit" class="btn btn-secondary btn-sm">Delete</button>
             </form>
@@ -35,7 +35,7 @@
 <% end %>
 <br></br>
 <% if session[:user_id] == @user.id %>
-  <form action="/new" method="get">
+  <form action="/recipes/new" method="get">
     <button type="submit" class="btn btn-secondary btn-sm">Add New Recipes</button>
   </form>
 <% end %>

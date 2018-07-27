@@ -6,8 +6,8 @@
     <% if flash.include?(:message) %>
       <p style="color:#f0ad4e;"><%= flash[:message] %> </p>
     <% end %>
-    
-    <form action="/edit/<%= @recipe.id %>" method="post">
+
+    <form action="/recipes/edit/<%= @recipe.id %>" method="post">
 
       <input id="hidden" type="hidden" name="_method" value="patch">
       <div class="form-group row">

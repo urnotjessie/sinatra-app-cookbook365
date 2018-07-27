@@ -13,11 +13,16 @@ class UsersController < ApplicationController
   end
 
   get '/signup' do
-    erb :"users/signup", :layout => :"layout_index"
+    if logged_in?
+      @user = User.find(session[:user_id])
+      redirect "/account/#{@user.slug}"
+    else
+      erb :"users/signup", :layout => :"layout_index"
+    end
   end
 
   post '/signup' do
-    if !params.values.include?("") && !User.find_by(email: params[:email])
+    if !params.values.include?("") && !User.find_by(email: params[:email]) && !User.find_by_slug(params[:username])
       @user = User.create(username: params[:username], email: params[:email], password: params[:password])
       session[:user_id] = @user.id
       redirect '/recipes'
@@ -26,6 +31,9 @@ class UsersController < ApplicationController
       redirect '/'
     elsif params.values.include?("")
       flash[:message] = "Please complete the form to signup!"
+      redirect '/signup'
+    else
+      flash[:message] = "User name existed, please choose another username!"
       redirect '/signup'
     end
   end

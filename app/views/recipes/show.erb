@@ -9,15 +9,15 @@
     <p><h5><strong>Ingredients:</strong></h5> <%= @recipe.ingredients %></p>
     <p><h5><strong>Method:</strong></h5> <%= @recipe.method %></p>
 
-    <% if session[:user_id] == @recipe.user_id %> 
+    <% if session[:user_id] == @recipe.user_id %>
       <div class="row justify-content-md-center">
         <div class="col col-lg-2">
-          <form action="/edit/<%= @recipe.id %>" method="get">
+          <form action="/recipes/edit/<%= @recipe.id %>" method="get">
             <button type="submit" class="btn btn-secondary btn-sm">Edit</button>
           </form>
         </div>
         <div class="col col-lg-2">
-          <form action="/delete/<%= @recipe.id %>" method="post">
+          <form action="/recipes/delete/<%= @recipe.id %>" method="post">
             <input id="hidden" type="hidden" name="_method" value="delete">
             <button type="submit" class="btn btn-secondary btn-sm">Delete</button>
           </form>

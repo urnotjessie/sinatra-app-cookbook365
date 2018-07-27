@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
 
-  get '/new' do
+  get '/recipes/new' do
     if logged_in?
       erb :"recipes/new"
     else
@@ -27,7 +27,7 @@ class RecipesController < ApplicationController
 
     else
       flash[:message] = "Please add recipe name!"
-      redirect '/new'
+      redirect '/recipes/new'
     end
 
   end
@@ -41,13 +41,13 @@ class RecipesController < ApplicationController
     erb :"recipes/show"
   end
 
-  get '/edit/:id' do
+  get '/recipes/edit/:id' do
 
     @recipe = Recipe.find(params[:id])
     erb :"recipes/edit"
   end
 
-  patch '/edit/:id' do
+  patch '/recipes/edit/:id' do
     @recipe = Recipe.find(params[:id])
 
     if current_user.recipes.include?(@recipe) && params[:recipe_name] != ""
@@ -62,14 +62,14 @@ class RecipesController < ApplicationController
 
     elsif params[:recipe_name] == ""
       flash[:message] = "Please add recipe name!"
-      redirect "/edit/#{@recipe.id}"
+      redirect "/recipes/edit/#{@recipe.id}"
 
     else
       redirect "/recipes/#{@recipe.id}"
     end
   end
 
-  delete '/delete/:id' do
+  delete '/recipes/delete/:id' do
 
     @recipe = Recipe.find(params[:id])
     if current_user.recipes.include?(@recipe)
